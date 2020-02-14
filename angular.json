@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-final-with-material": {
+    "angular-notification-service-front-end": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-final-with-material",
+            "outputPath": "dist/angular-notification-service-front-end",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,7 +24,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/styles.css",
+              "./node_modules/ngx-toastr/toastr.css"
+              
             ],
             "scripts": []
           },
@@ -63,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-final-with-material:build"
+            "browserTarget": "angular-notification-service-front-end:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-final-with-material:build:production"
+              "browserTarget": "angular-notification-service-front-end:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-final-with-material:build"
+            "browserTarget": "angular-notification-service-front-end:build"
           }
         },
         "test": {
@@ -86,9 +89,10 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets" 
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -111,15 +115,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-final-with-material:serve"
+            "devServerTarget": "angular-notification-service-front-end:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-final-with-material:serve:production"
+              "devServerTarget": "angular-notification-service-front-end:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "angular-final-with-material"
+    }
+  },
+  "defaultProject": "angular-notification-service-front-end"
 }

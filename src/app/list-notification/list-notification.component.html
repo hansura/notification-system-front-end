@@ -1,0 +1,145 @@
+<app-navigation></app-navigation>
+ <mat-form-field style="width: 50%; margin-left: 350px; margin-top:5px">
+           <mat-label>search here</mat-label>
+           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Issue Id , User Id , Date , ....." />
+ </mat-form-field>
+ <button type="button" mat-raised-button mat-icon-button style="margin-left: 120px;" (click)="notification()"> <mat-icon >add_alert </mat-icon>  </button>
+ <button type="button" mat-raised-button mat-icon-button style="margin-left: 10px;" (click)="todayNotification()"> <mat-icon matBadge="{{countNotification}}" matBadgeOverlap=false matBadgeColor="warn"  >notifications_active</mat-icon>  </button>
+  <span mat></span>
+<mat-table [dataSource]="dataSource" matSort id="notification-table">
+    <ng-container matColumnDef="issueId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Issue Id
+        </mat-header-cell>
+        <mat-cell *matCellDef="let notification">
+            <p *ngIf="currentDate >= updateDate(this.datePipe.transform(notification.dateUpto ,'yyyy-MM-dd'))  || notification.status === true else displayNormal " >
+                <mat-icon style="color: green;">done_outline</mat-icon> 
+                  # {{notification.issueId}}
+            
+            </p>   
+            <ng-template #displayNormal><mat-icon>watch_later</mat-icon> # {{notification.issueId}}</ng-template>
+       
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="branch">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Branch
+        </mat-header-cell>
+        <mat-cell *matCellDef="let notification">
+            <p style="font-size: 11px;">   {{notification['branch'].branchCode}} &nbsp;{{notification['branch'].branchName}}</p>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="removedUser">
+        <mat-header-cell *matHeaderCellDef > Removed From
+        </mat-header-cell>
+        <mat-cell *matCellDef="let notification" style="font-weight: bold;font-size:12px; color:darkslategray"> {{notification.removedUserId.toUpperCase()}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="removedPosition">
+        <mat-header-cell *matHeaderCellDef > Removed position
+        </mat-header-cell>
+        <mat-cell *matCellDef="let notification"> <div style="font-weight: bold;"> 
+          <p style="color: olive;font-size: 12px">  {{notification.removedPosition.positionName}} </p>
+             <div *ngFor="let role of notification.removedPosition.role">
+                  <p style="font-size:10px;  color:indigo; margin-top: -5px;"><img src="assets/button_cancel.png" width="10" />  {{   role.roleName  }} </p> 
+
+             </div>
+     
+        
+        </div> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="userId">
+        <mat-header-cell *matHeaderCellDef > Added to
+        </mat-header-cell>
+        <mat-cell *matCellDef="let notification" style="font-weight: bold;font-size:11px; margin-left: 15px;color:darkslategray"> {{notification.userId.toUpperCase()}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="previousPosition">
+        <mat-header-cell *matHeaderCellDef > Previous position
+        </mat-header-cell>
+        <mat-cell *matCellDef="let notification"> <div style="font-weight: bold;"> 
+         <p style="color: olive;font-size: 12px">   {{notification.previousPosition.positionName}} </p>
+             <div *ngFor="let role of notification.previousPosition.role">
+                  <p style="font-size:10px; color:royalblue; margin-top: -5px;"><img src="assets/apply.png" width="10" />  {{   role.roleName  }} </p> 
+
+             </div>
+     
+        
+        </div> </mat-cell>
+    </ng-container>
+
+
+ <ng-container matColumnDef="currentPosition">
+        <mat-header-cell *matHeaderCellDef > Current position
+        </mat-header-cell>
+        <mat-cell *matCellDef="let notification"> <div style="font-weight: bold;"> 
+           <p style="color:olive; font-size: 12px;"> {{notification.currentPosition.positionName}}</p>
+             <div *ngFor="let role of notification.currentPosition.role">
+                  <p style="font-size:10px;  color:darkviolet; margin-top: -5px;"><img src="assets/edit_add.png" width="10" />  {{   role.roleName  }} </p> 
+
+             </div>
+     
+        
+        </div> </mat-cell>
+    </ng-container>
+
+
+
+
+    <ng-container matColumnDef="dateFrom">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date From
+        </mat-header-cell>
+        <mat-cell *matCellDef="let notification"> 
+            
+           <p *ngIf="currentDate >= updateDate(this.datePipe.transform(notification.dateFrom ,'yyyy-MM-dd'))  && notification.status === false  && notification.dateUpto == null;  else displayNormal " ><mat-icon style="color:red" id="notify">notifications_active</mat-icon>  {{notification.dateFrom}}</p>   
+            <ng-template #displayNormal><mat-icon></mat-icon> {{notification.dateFrom}}</ng-template>
+         </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="dateUpto">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date Up to
+        </mat-header-cell>
+        <mat-cell *matCellDef="let notification" >
+             <p *ngIf="currentDate >= updateDate( this.datePipe.transform(notification.dateUpto ,'yyyy-MM-dd') ) && notification.status === false  ;  else displayNormal " ><mat-icon style="color:red" id="notify">notifications_active</mat-icon>  {{notification.dateUpto}}</p>   
+             <ng-template #displayNormal> <mat-icon></mat-icon>{{notification.dateUpto}}</ng-template>
+        
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status"  class="status">
+        <mat-header-cell *matHeaderCellDef > status
+        </mat-header-cell>
+        <mat-cell *matCellDef="let notification">
+             <div *ngIf="notification.status === true ; else displayNotClose">               
+                <mat-icon svgIcon="close" style="color:red; margin-left: 8px;" class="status-icon">check_circle_outline</mat-icon>                
+            </div>
+            <ng-template #displayNotClose> <mat-icon svgIcon="open" style="color:green;margin-left: 8px;" class="status-icon" > </mat-icon></ng-template>
+
+           
+        </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="action" style="width: 40px;">
+        <mat-header-cell *matHeaderCellDef >
+        </mat-header-cell>
+        <mat-cell *matCellDef="let notification">
+            <button mat-icon-button (click)="updateNotification(notification)"><mat-icon>edit </mat-icon> </button>
+            <button mat-icon-button (click)="deleteNotification(notification['id'])" ><mat-icon> close</mat-icon> </button>
+            <button mat-icon-button (click)="closeNotification(notification['id'])" ><mat-icon> closed_caption</mat-icon> </button>
+        </mat-cell>
+    </ng-container>
+    
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" 
+       [ngClass]="{'highlight': selectedRowIndex == row.id}"
+         (click)="highlight(row)"
+     ></mat-row>
+
+</mat-table>
+<mat-paginator style="margin-top:0px" [pageSizeOptions]="[4,20,40]" showFirstLastButtons></mat-paginator>

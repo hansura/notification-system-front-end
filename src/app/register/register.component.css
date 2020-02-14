@@ -1,0 +1,55 @@
+#form{
+   
+    position: relative;
+     top : 100px;
+     margin-left:470px;
+     
+    
+} 
+
+#logo {
+     margin-left: 140px;
+}
+ #sign-up-button{
+     width: 400px;
+     height: 45px;
+}
+
+
+#right {
+
+}    
+#center-icon{
+   position: relative;
+   top:-40px;
+   left:190px;
+} 
+#center{
+      position: relative;
+     top:-45px;
+     margin-left:90px;
+     color:red;
+}
+
+#center2{
+     position: relative;
+    top:-45px;
+    margin-left:54px;
+    color:green;
+}
+     
+
+#center-icon-2 {
+
+     position: relative;
+     top:-40px;
+     left:180px;
+
+}  
+
+#click-here {
+  
+       text-decoration: none;
+    
+       
+}

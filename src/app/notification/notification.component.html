@@ -1,0 +1,123 @@
+<app-navigation></app-navigation>
+<form  [formGroup]="notificationFormGroup" (ngSubmit)="postNotification()" id="notification">
+    <div id="top" >
+        <h3> Issue Information</h3>
+        <div formGroupName="notification">  
+        <div id="issueId">
+            <mat-form-field style="width: 20%;">
+                <mat-label> Issue ID</mat-label>
+                <input type="number" matInput placeholder="issue id" formControlName="issueId"   />
+            </mat-form-field>
+        </div>
+        </div>
+        <div id="branch">
+            <mat-form-field style="width: 40%;">
+                <mat-label>Branch</mat-label>
+                <mat-select placeholder="branch"  formControlName="branchId">
+                    <mat-option  *ngFor="let branch of branches"  [value]="branch.id"> {{branch.branchCode }} &nbsp;&nbsp;&nbsp; {{branch.branchName}} </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+      
+  
+
+
+    </div>
+   
+   
+    <div id="top-of">  
+        <div formGroupName="notification"> 
+            <h3 style="margin-left: 81px;">Removed From </h3>
+        <div id="removedUserId" >
+            <mat-form-field style="width: 20%;">
+                <mat-label> User Id </mat-label>
+                <input type="text" matInput placeholder="issue id" formControlName="removedUserId"   />
+            </mat-form-field>
+        </div>
+        </div>
+        <div id="removedPosition">
+            <mat-form-field style="width: 40%;">
+                <mat-label>Removed Position</mat-label>
+                
+                <mat-select placeholder="removed position"  formControlName="removedId" (selectionChange)="onChangeRemove()">
+                     <mat-option [value]="">empty </mat-option>
+                    <mat-option *ngFor="let position of positions" [value]="position.id" > {{position.positionName}} </mat-option>
+                </mat-select>
+
+            </mat-form-field>
+            <ul id="roles-remove">
+                <li *ngFor="let role of removedRoles"  style="font-size: 12px;"><img  src="assets/button_cancel.png" width="15" /> {{role}}</li>
+            </ul>
+        </div>
+      
+        </div>
+  
+
+
+    <div id="center">
+        <h3 style="margin-left:-100px"> Added To  </h3 >
+        <div formGroupName="notification" > 
+            <div id="userid">
+                <mat-form-field style="width: 20%;">
+                    <mat-label>User ID</mat-label>
+                    <input type="text" matInput placeholder="user id" formControlName="userId" />
+                </mat-form-field>
+            </div>
+            </div>
+        <div id="previous">
+            <mat-form-field style="width: 30%;">
+                <mat-label>Previous Position</mat-label>
+                
+                <mat-select placeholder="previous position" formControlName="previousId"      (selectionChange)="onChangePrevious()" >
+                    <mat-option [value]="">empty </mat-option>
+                    <mat-option  *ngFor="let position of positions"  [value]="position.id" >  {{position.positionName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <ul id="previous-role">
+                <li *ngFor="let role of previousRoles" style="font-size: 12px;"><img  src="assets/apply.png" width="15" /> {{role}}</li>
+            </ul>
+        </div>
+
+        <div id="current">
+            <mat-form-field style="width: 45%;">
+                <mat-label>Current Position</mat-label>
+                <mat-select placeholder="current position"  formControlName="currentId" (selectionChange)="onChangeCurrent()">
+                    <mat-option [value]="">empty </mat-option>
+                    <mat-option *ngFor="let position of positions" [value]="position.id" > {{position.positionName}} </mat-option>
+                </mat-select>
+
+            </mat-form-field>
+            <ul id="current-role">
+                <li *ngFor="let role of currentRoles"  style="font-size: 12px;"><img  src="assets/edit_add.png" width="15" /> {{role}}</li>
+               
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div id="bottom">
+        
+        <h3>Effective Date </h3>
+        <div formGroupName="notification"> 
+        <div id="from-date">
+            <mat-form-field style="width: 25%;">
+                <mat-label>up to</mat-label>
+                <input type="date" matInput placeholder="up to"  formControlName="dateFrom" />
+            </mat-form-field>
+        </div>
+    
+        <div id="upto-date">
+            <mat-form-field style="width: 40%;">
+                <mat-label>up to</mat-label>
+                <input type="date" matInput placeholder="up to"  formControlName="dateUpto" />
+            </mat-form-field>
+        </div>
+      </div>
+
+    </div>
+     <button type="submit" mat-raised-button  id="submit" color="primary">
+           <mat-icon>add_circle</mat-icon> add 
+     </button>
+
+</form>

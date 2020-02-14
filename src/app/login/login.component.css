@@ -1,0 +1,40 @@
+#form{
+   
+    position: relative;
+     top : 150px;
+     margin-left:470px;
+     
+    
+} 
+
+#logo {
+     margin-left: 140px;
+}
+#login-button , #sign-up-button{
+     width: 150px;
+     height: 45px;
+
+}
+
+
+   
+#right {
+
+}    
+#left{
+   position: relative;
+   top:-84px;
+   left:380px;
+} 
+#center{
+     position: relative;
+    top:-60px;
+    margin-left:90px;
+    color:red;
+}
+
+#center-icon{
+     position: relative;
+     top:-50px;
+     left:190px;
+  } 

@@ -1,0 +1,38 @@
+
+<form id="form" [formGroup]="loginFormGroup">
+    <div *ngIf="invalidUser" style="height: 30px;">
+        <img src="assets/button_cancel.png" width="20" height="20" id="center-icon" />
+        <h3 id="center" color="red"> <mat-icon>mood_bad </mat-icon>    {{message}}  <mat-icon>mood_bad </mat-icon>   </h3>   
+         
+  </div>
+    <div>
+        <img src="assets/enatbank-logo.png" width="100" height="100" id="logo"/>
+    </div>
+    <mat-form-field appearance="outline"  style="width: 45%;">
+        <mat-label>Username</mat-label>
+        <input type="text"  name="username" matInput placeholder="Username"  formControlName="username" required style="padding-left: 15px;"/>
+        <mat-icon  matPrefix>account_circle</mat-icon>
+        <mat-hint></mat-hint>   
+     </mat-form-field>
+    <br>
+      <mat-form-field appearance="outline" style="width: 45%;">
+          <mat-label>Password</mat-label> 
+          <input type="password" name="password"  style="padding-left: 15px;" matInput placeholder="password"  formControlName="password" required  [type] ="hide ? 'password' : 'text'"  (keydown.enter)="login()" />
+          <mat-icon matPrefix>visibility </mat-icon>
+          <mat-hint></mat-hint>
+      </mat-form-field>
+
+   <br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button mat-raised-button id="login-button" color="primary" (click) = "login()" [disabled]="loginFormGroup.invalid" >
+        <mat-icon>lock_open</mat-icon>  Login
+    </button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+    <button mat-raised-button id="sign-up-button" color="primary" (click) = "navigateToRegister()" type="submit" >
+      <mat-icon>person_add</mat-icon>  Register
+   </button>
+
+
+</form>

@@ -1,0 +1,12 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+    <span><img  src="assets/titleenat.png" width="140" height="50" (click)="notification()" /></span>
+    <span class="spacing"> </span>
+    <button mat-raised-button color="primary" class="menu-spacing"  (click) ="notification()">    <mat-icon aria-label="manage-notification">notifications_none</mat-icon> Notification</button> 
+    <button mat-raised-button color="primary" class="menu-spacing" (click) ="role()" > <mat-icon aria-label="manage-role">work</mat-icon>  Role</button>
+    <button mat-raised-button color="primary" class="menu-spacing" (click) ="position()"> <mat-icon arial-label="manage-position">people_alt</mat-icon> Position  </button>
+    <button mat-raised-button color="primary" class="menu-spacing" (click)="branch()" ><mat-icon arial-label="manage-branch">device_hub</mat-icon> Branch</button>
+    <button mat-raised-button color="primary" class="menu-spacing"   ><mat-icon arial-label="profile">account_circle</mat-icon> &nbsp; {{username}}</button>
+    <button mat-raised-button color="primary" class="menu-spacing"  (click)="logout()" ><mat-icon arial-label="logout">account_circle</mat-icon> Logout</button>
+
+
+</mat-toolbar>

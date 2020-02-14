@@ -1,0 +1,32 @@
+#notify{
+    color: red;
+    animation-name: animationNotify;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+
+}
+
+@keyframes animationNotify{
+    0%   {color:red;}
+    25%  {color:yellow;}
+    50%  {color:blue; }
+    75%  {color:green;}
+    100% {color:red; }
+    
+
+}
+
+
+
+.status-icon{
+
+   transform: scale(1.5);
+}
+
+.highlight{
+    background:lightgray;
+}
+
+#notification-table{
+     margin-top: 20px;
+}

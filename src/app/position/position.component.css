@@ -1,0 +1,32 @@
+#form-display{
+ 
+   position: relative;
+   width:  30%;
+   top:0px;
+   border-right : 6px solid lightgray;
+   box-shadow:  5px ;
+ 
+}
+
+#form{
+      margin-left:50px;
+      padding-bottom: 10px;
+      width: 100%;
+}
+#display{
+      position: absolute;
+      width: 68%;
+      top:90px;
+      margin-left:31vw;
+     
+  }
+
+  h3{
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       color:lightgray;
+       font-weight: bolder;
+       width: 120px;
+       box-shadow: 5px 5px 5px;
+       
+   }
+ 

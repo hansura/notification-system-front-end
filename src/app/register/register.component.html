@@ -1,0 +1,48 @@
+
+<form id="form" [formGroup]="loginFormGroup" (ngSubmit)="registerUser()"> 
+    <div *ngIf="isRegistered" style="height: 30px;">
+        <img src="assets/button_cancel.png" width="20" height="20" id="center-icon" />
+        <h3 id="center" color="red"> <mat-icon>mood_bad </mat-icon>    {{message}}  <mat-icon>mood_bad </mat-icon>   </h3>   
+         
+  </div>
+  <div *ngIf="registered" style="height: 30px;">
+    <img src="assets/apply.png" width="20" height="20" id="center-icon-2" />
+      <h3 id="center2" color="red"><mat-icon>mood</mat-icon>  {{success}}  <mat-icon >mood</mat-icon> </h3>
+    
+</div>
+
+    <div>
+        <img src="assets/enatbank-logo.png" width="100" height="100" id="logo"/>
+    </div>
+    <mat-form-field appearance="outline"  style="width: 45%;">
+        <mat-label>username</mat-label>
+        <input type="text"   style="margin-left: 15px;"   name="username" matInput placeholder=" username"   formControlName="username" />
+        <mat-icon  matPrefix>account_circle</mat-icon>
+        <mat-hint></mat-hint>   
+     </mat-form-field>
+    <br>
+      <mat-form-field appearance="outline" style="width: 45%;">
+          <mat-label>password</mat-label> 
+          <input type="password" name="password" style="margin-left: 15px;"  matInput placeholder=" password"  formControlName="password" />
+          <mat-icon matPrefix>visibility_off </mat-icon>
+          <mat-hint ></mat-hint> 
+      </mat-form-field>
+
+   <br>
+
+   <mat-form-field appearance="outline" style="width: 45%;">
+    <mat-label>confirm password</mat-label> 
+    <input type="password" name="confirm_password"  style="margin-left: 15px;"  matInput placeholder=" confirm password" formControlName="confirm_password" />
+    <mat-icon matPrefix>visibility_off </mat-icon>
+    <!-- <mat-hint *ngIf="validatePassword">{{confirm_error}}</mat-hint>  -->
+</mat-form-field>
+  <br>
+    <div *ngIf="registered"> <a [routerLink]="['/login']" id="click-here"><mat-icon>forward </mat-icon> click here to login </a></div>
+   <br>
+
+    <button mat-raised-button id="sign-up-button" color="primary"  type="submit"  [disabled]="loginFormGroup.invalid">
+      <mat-icon>person_add</mat-icon>  Register
+   </button>
+
+
+  </form>

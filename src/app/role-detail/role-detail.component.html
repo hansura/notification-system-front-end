@@ -1,0 +1,11 @@
+<form [formGroup]="roleDemoFormGroup" (ngSubmit) ="onSubmit()">
+
+    <input type="text" formControlName ="roleName" />
+    <br>
+    <input type="textarea" formControlName ="roleDescription" />
+    <br>
+    <button  type="submit" color="primary" >
+         save
+    </button>
+
+</form>

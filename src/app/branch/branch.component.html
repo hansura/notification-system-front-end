@@ -1,0 +1,54 @@
+<app-navigation></app-navigation>
+<form id="form" [formGroup]="branchFormGroup" (ngSubmit) ="registerBranch()"  >  
+<h4 style="color:gray; ">Add Branch</h4>
+<mat-form-field appearance="" style="width: 30%; height: 10%;"  >
+   <mat-label>branch code</mat-label>
+   <input type="text" name="branchCode" placeholder="branch code" matInput formControlName="branchCode"  />
+</mat-form-field>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 
+ 
+<mat-form-field appearance="" style="width:30%; height: 10%;">
+    <mat-label>branch name</mat-label>
+    <input type="text" name="branchName" placeholder="branch name" matInput  formControlName="branchName" />
+ </mat-form-field>
+  <br>
+  <button mat-raised-button id="submit" color="primary"   type="submit" [disabled] ="branchFormGroup.invalid"  >
+    <mat-icon>add_circle_outline</mat-icon>  add  
+  </button>
+</form>
+<br>
+<mat-form-field style="width: 50%; margin-left:25%">
+    <mat-label>search</mat-label>
+    <input type="text" (keyup)="applyFilter($event.target.value)"  matInput placeholder="search " />
+</mat-form-field>
+<br>
+<div class="mat-elevation-z8" style="width: 70%; margin-left: 15%" > 
+<table mat-table [dataSource]="dataSource"  style="width: 100%;" matSort >
+    <ng-container matColumnDef="branchCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Branch Code
+        </mat-header-cell>
+        <mat-cell *matCellDef="let branch"> {{branch.branchCode}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="branchName">
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Branch Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let branch"> {{branch.branchName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef > 
+        </mat-header-cell>
+        <mat-cell *matCellDef="let branch"> 
+           <button (click) = "updateBranch(branch)" mat-icon-button  > <mat-icon>system_update_alt </mat-icon>  </button>
+           <button (click) = "deleteBranch(branch['id'])" mat-icon-button  > <mat-icon> clear</mat-icon>  </button>
+
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayColumns;"></mat-row>
+</table>
+<mat-paginator [pageSizeOptions]="[4,15,30]" showFirstLastButtons></mat-paginator>
+</div>

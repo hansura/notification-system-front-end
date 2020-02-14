@@ -1,0 +1,22 @@
+
+<form id="form"  [formGroup] ="roleFormGroup" (ngSubmit) ="updateRole()"  >  
+    <h4 style="color:rgb(88, 84, 84); ">Update  Role</h4>
+    <mat-form-field appearance="" style="width: 30%; height: 10%;" >
+       <mat-label>role name</mat-label>
+       <input type="text" name="roleName" placeholder="role name" matInput  formControlName="roleName"  />
+    </mat-form-field>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     
+     
+    <mat-form-field appearance="" style="width:30%; height: 10%;">
+        <mat-label>role description</mat-label>
+        <input type="text" name="roleDescription" placeholder="role description" matInput   formControlName="roleDescription" />
+     </mat-form-field>
+      <br>
+      <button mat-raised-button id="submit" color="primary"  [disabled]="roleFormGroup.invalid" type="submit"  >
+        <mat-icon>edit</mat-icon>  update  
+      </button>
+    </form>
+    <button mat-raised-button  id="close" color="primary" (click)="closeDialog()">
+       <mat-icon>clear</mat-icon> close
+    </button>

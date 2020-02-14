@@ -1,0 +1,23 @@
+<form id="form" [formGroup]="branchFormGroup" (ngSubmit) ="updateBranch()"  >  
+    <h4 style="color:gray; ">Update Branch</h4>
+    <mat-form-field appearance="" style="width: 30%; height: 10%;" >
+       <mat-label>branch code</mat-label>
+       <input type="text" name="branchCode" placeholder="branch code" matInput  formControlName="branchCode"  />
+    </mat-form-field>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     
+     
+    <mat-form-field appearance="" style="width:30%; height: 10%;">
+        <mat-label>branch name</mat-label>
+        <input type="text" name="branchName" placeholder="branch name" matInput   formControlName ="branchName" />
+     </mat-form-field>
+      <br>
+      <button mat-raised-button id="submit" color="primary"   type="submit"  [disabled]="branchFormGroup.invalid" >
+        <mat-icon>edit</mat-icon>  update  
+      </button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+    
+    </form>
+    <button mat-raised-button  id="close" color="primary" (click)="closeDialog()">
+       <mat-icon>clear</mat-icon> close
+    </button>

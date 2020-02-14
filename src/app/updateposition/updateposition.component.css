@@ -1,0 +1,23 @@
+h3{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:lightgray;
+    font-weight: bolder;
+    width: 200px;
+    box-shadow: 5px 5px 5px;
+    padding-bottom: 10px;
+    
+}
+
+
+ 
+ #form{
+           padding-left: 50px;
+ }
+ #submit {
+        margin-left: 180px;
+ }
+ #close{
+        position: relative;
+        top:-35px;
+        left:350px;
+ }

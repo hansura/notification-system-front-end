@@ -1,0 +1,107 @@
+#notification{
+        position: relative;
+        margin-top: 40px;
+        height:525px;
+        overflow-y: hidden;
+    }
+
+#top{
+     position: relative;
+     margin-left:320px;
+     margin-top:-15px;
+}
+
+#issueid{
+     position: relative;
+     padding-left: 170px;
+}
+#userid{
+    position: relative;
+    margin-left:-100px;
+     top:-5px;
+        
+}
+#branch{
+    position: relative;
+    top:-65px;
+    margin-left:320px;
+
+}
+
+#center{
+     position: relative;
+     top:-140px;
+     margin-left:420px;
+}
+#previous{
+    position: relative;
+    top:-70px;
+    margin-left: 220px;
+    
+
+}
+
+#current{
+    position: relative;
+    margin-left:500px;
+    margin-top:-135px;
+}
+#current-role ,#previous-role{
+     position: absolute;
+     margin-top:-10px;
+     
+}
+
+#bottom{
+    position: relative;
+    top:-110px;
+    margin-left:320px;
+}
+#from-date{
+    position: relative;
+    margin-top:-5px;
+}
+#upto-date{
+    position: relative;
+    margin-left:350px;
+    margin-top:-68px;
+
+}
+#submit{
+      position: relative;
+      top:-110px;
+      margin-left: 590px;
+}
+
+h3{
+     color:gray;
+     font-size: 15px;
+}
+ul li{
+    
+     list-style-type: none;
+}
+
+#top-of{
+      position: relative;
+      top:-70px;
+      margin-left:240px;
+}
+
+#removedUserId {
+    
+    position: relative;
+    top:-10px;
+    margin-left: 80px;
+
+}
+#removedPosition{
+   position: relative;
+   top:-75px;
+   margin-left: 400px;
+
+}
+#roles-remove{
+  position: absolute;
+  top:33px;
+}

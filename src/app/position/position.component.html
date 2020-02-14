@@ -1,0 +1,105 @@
+<app-navigation></app-navigation>
+
+<div id="form-display" >
+    <div  id="form"  >
+         <h3>  Add Position </h3>
+        <form
+            [formGroup]="positionControlGroup"
+            (ngSubmit)="addPosition()" >
+            <div formGroupName="position" > 
+            <mat-form-field  style="width: 70%; ">
+                <mat-label>position name</mat-label>
+                <input
+                    type="text"
+                    matInput
+                    placeholder="position name"
+                    formControlName="positionName"  style="font-size: 13px;" >
+
+            </mat-form-field>
+         
+            <mat-form-field  style="width: 70%; ">
+                <mat-label>position description</mat-label>
+                 <input type="text " style="font-size: 13px;"   formControlName="positionDescription" matInput />
+            </mat-form-field>
+        </div>
+          
+    
+            <!-- <mat-form-field style="width: 70%;font-size: 12px; "  > -->
+               <!-- <mat-select   matInput multiple formControlName="roleIds" placeholder="select role(s)" style="width: 100%;">
+                       <mat-option   *ngFor="let role of roles"
+                       [value] = "role.id"><h2 style="font-size:12px"> {{role.roleName}} </h2></mat-option>
+               </mat-select> -->
+               <div style="width: 70%;font-size: 12px; height: 50vh; overflow-y: scroll; " > 
+
+               <mat-selection-list formControlName="roleIds" color="primary" >
+                   <mat-label>select role(s)</mat-label>
+                <mat-list-option *ngFor="let role of roles"   [value]="role.id"  style="font-size: 13px;">
+                    {{role.roleName}}
+                    <p style="font-size: 9px;padding-left: 5px;">{{role.roleDescription}}</p>
+                </mat-list-option>
+              </mat-selection-list>
+            </div>
+            <!-- </mat-form-field> -->
+    
+            
+            <button type="submit"  color="primary" mat-raised-button   [disabled]="positionControlGroup.invalid && this.positionControlGroup.controls.roleIds.invalid"> <mat-icon>add_circle</mat-icon>add</button>
+
+        </form>
+
+    </div>
+</div>
+    <div  id="display">
+      <mat-form-field style="width: 100%;">
+          <mat-label>search </mat-label>
+          <input type="text"  matInput (keyup)="applyFilter($event.target.value)" placeholder="search here"   />
+      </mat-form-field>
+        <mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="positionName">
+                <mat-header-cell *matHeaderCellDef>Position Name</mat-header-cell>
+                <mat-cell *matCellDef="let position" style="font-size:12px">{{position.positionName}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="positionDescription">
+                <mat-header-cell *matHeaderCellDef>Position Description</mat-header-cell>
+                <mat-cell *matCellDef="let position" style="font-size:12px">{{position.positionDescription}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="role" >
+                <mat-header-cell *matHeaderCellDef>Associated Role</mat-header-cell>
+                <mat-cell *matCellDef="let position" >
+                    <mat-expansion-panel [hideToggle]="false" style="width: 100vw; ">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title> 
+                                 <mat-icon><img  src="assets/role.jpg" width="50" /></mat-icon>
+                            </mat-panel-title>
+                            <mat-panel-description></mat-panel-description>
+                        </mat-expansion-panel-header>
+                         <div *ngFor="let roles of position.role">
+                            
+                            <h6 >
+                              <p style="color:gray" style="margin-top: -20px;"> <img src="assets/individual-role.png" width="15" />
+                                     {{roles.roleName}} </p>  
+                               <p> <img src="assets/apply.png" width="15" style="margin-left: 15px;" />  {{roles.roleDescription}}</p> 
+                            </h6>
+                        </div>
+                    </mat-expansion-panel>    
+                  
+                   
+                </mat-cell>
+            </ng-container>
+
+           <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+             <mat-cell *matCellDef ="let position">
+                    <button mat-icon-button (click)="updatePosition(position)"> <mat-icon> system_update_alt </mat-icon></button>
+                    <button mat-icon-button (click)="deletePosition(position['id'])"> <mat-icon> clear </mat-icon></button>
+
+                </mat-cell>
+           </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[7,14,30]" showFirstLastButtons></mat-paginator>
+    </div>
+
+
